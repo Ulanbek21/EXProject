@@ -1,6 +1,6 @@
 import pytest
 from selenium import webdriver
-from pageObject.LoginPage import LoginPage
+from NADEXProject.pageObject.LoginPage import LoginPage
 
 
 

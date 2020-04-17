@@ -9,8 +9,6 @@
 # # 4) Actions
 
 # # ------------------------------------------------------------------
-import sys
-sys.path.append('.')
 from selenium import webdriver
 
 # # 1) Creat Class
