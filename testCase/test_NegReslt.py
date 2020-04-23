@@ -1,4 +1,5 @@
 from selenium import webdriver
+from EXProject.pageObject.homePage import MainPage
 import time
 import pytest
 
@@ -13,25 +14,24 @@ import pytest
 
 url = 'https://www.expedia.com/'
 driver = webdriver.Chrome()
+hp = MainPage(driver) # create new object for MainPage class to instantiate
 
 def test_Home_Page():
     driver.get(url)
-    driver.implicitly_wait(20)
+    driver.implicitly_wait(10)
     driver.maximize_window()
     assert driver.title == 'Expedia Travel: Search Hotels, Cheap Flights, Car Rentals & Vacations'
 
 def test_click_hotel():
-    hotel = driver.find_element_by_id('primary-header-hotel').click()
+    hp.test_click_hotel()
 
 def test_find_city():
-    ser_city = driver.find_element_by_name("destination")
-    ser_city.send_keys('^&$(^%&$)(&*^')
+    hp.test_find_city("^&$(^%&$)(&*^")
 
 def test_search_button():
-    driver.find_element_by_xpath('//*[@id="gcw-hotel-form-hlp"]/div[13]/label/button').click()
-
+    hp.test_search_button()
+time.sleep(3)
 def test_Try_Button():
     try_ag = driver.find_element_by_xpath("//span[contains(text(),'Try again')]")
-    print('Display status of search button: ',try_ag.is_displayed())
-    print('Enabled status of search button: ',try_ag.is_enabled())
-    try_ag.click()
+    assert try_ag.is_displayed() == True
+    assert try_ag.is_enabled() == False
