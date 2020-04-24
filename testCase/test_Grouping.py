@@ -1,15 +1,15 @@
 from selenium import webdriver
 import time
 import pytest
-from EXProject.pageObject.homePage import MainPage
+
 #==============================================================================================
 url = 'https://www.expedia.com/'
 driver = webdriver.Chrome()
-hp = MainPage(driver)
 
 @pytest.mark.TC1
 @pytest.mark.TC2
-def test_Home_Page():
+@pytest.mark.TC3
+def test_HomePage():
     driver.get(url)
     driver.implicitly_wait(20)
     driver.maximize_window()
@@ -32,7 +32,7 @@ def test_hotels():
     number_of_hotels = len(driver.find_elements_by_xpath("//section[@class='results']/ol/li"))
     # print('Numbers of hotles: ',number_of_hotels)
 
-    # assert number_of_hotels > 10
+    assert number_of_hotels > 10
     driver.back()   
 
 #============================================    TC2    ===================================================
@@ -52,4 +52,26 @@ def test_click_search():
 @pytest.mark.TC2   
 def test_ok_button():
     ok = driver.find_element_by_xpath("//span[contains(text(),'Try again')]")   
-    driver.quit()
+    time.sleep(2)
+    driver.back() 
+
+#============================================    TC3    ===================================================
+
+@pytest.mark.TC3
+def test_flights():
+    flight = driver.find_element_by_xpath("//a[@id='primary-header-flight']")
+    flight.click()
+    driver.refresh()
+    time.sleep(2)
+
+
+@pytest.mark.TC3
+def test_cal():
+    driver.find_element_by_id("flight-departing-flp").send_keys('04/05/2021')
+    time.sleep(2)
+
+
+@pytest.mark.TC3
+def test_cal2():
+    driver.find_element_by_id("flight-returning-flp").send_keys('05/05/2021')
+
