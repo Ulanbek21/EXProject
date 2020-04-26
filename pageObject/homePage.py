@@ -4,11 +4,10 @@ import time
 import pytest
 
 
-@pytest.mark.usefixtures("setup")
 class HomePage():
 
-    # def __init__(self, driver):
-    self.driver = 
+    def __init__(self, driver):
+        self.driver = driver
 
     # Elements
 
