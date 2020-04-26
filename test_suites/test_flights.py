@@ -18,7 +18,7 @@ class TestFlights():
         self.hp.enter_returning_date('05/20/2020')
         time.sleep(2)
 
-    @pytest.mark.negative_scenarios
+    @pytest.mark.negative_scenario
     def test_flights_negative(self, setup):
         self.hp = HomePage(setup)
         self.hp.click_flight_btn()
