@@ -1,5 +1,4 @@
 from selenium.webdriver.common.keys import Keys
-# from EXProject.browser import Browser
 import time
 import pytest
 
@@ -8,6 +7,7 @@ class HomePage():
 
     def __init__(self, driver):
         self.driver = driver
+
 
     # Elements
 
@@ -23,9 +23,18 @@ class HomePage():
             "flight-returning-flp")
         return element
 
+    @property
+    def try_again_btn(self):
+        try_again_btn = self.driver.find_element_by_xpath(
+            "//span[contains(text(),'Try again')]")
+        return try_again_btn
+
 
 # Actions
 
+
+    def verify_try_again_enabled(self):
+        return self.try_again_btn.is_enabled()
 
     def click_hotel_btn(self):
         self.driver.find_element_by_id('primary-header-hotel').click()
