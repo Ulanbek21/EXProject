@@ -1,26 +1,30 @@
-from selenium import webdriver
 from EXProject.page_objects.home import HomePage
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+from selenium import webdriver
 import time
 import pytest
 
 
-# Go to main page
-# Click on Hotels
-# Search for ^&$(^%&$)(&*^
-# Verify that "Sorry, we're having problem on our end" is displayed
-# Verify that "Try again" button is visible and its state enabled
-
-
-
-
+@pytest.mark.usefixtures("setup")
 class TestHotels():
 
+    # @pytest.mark.skip
     @pytest.mark.negative_scenario
-    @pytest.mark.usefixtures("setup")
     def test_hotel_search_negative(self, setup):
-        hp = HomePage(setup)
-        hp.click_hotel_btn()
-        hp.enter_hotel_city("^&$(^%&$)(&*^")
-        hp.click_search_btn()
+        self.hp = HomePage(setup)
         time.sleep(3)
-        assert hp.verify_try_again_enabled() == True
+        self.hp.click_hotel_btn()
+        self.hp.enter_hotel_city("^&$(^%&$)(&*^")
+        self.hp.click_search_btn()
+        time.sleep(3)
+        assert self.hp.verify_try_again_enabled() == True
+
+    # @pytest.mark.skip
+    @pytest.mark.positive_scenario
+    def test_search_hotel(self, setup):
+        self.hp = HomePage(setup)
+        time.sleep(1.5)
+        self.hp.click_hotel_btn()
+        self.hp.enter_hotel_city("Dallas")
+        self.hp.click_search_btn()

@@ -1,15 +1,16 @@
 import pytest
 from selenium import webdriver
+import time
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture(scope='function')
 def setup(request):
     print("initiating chrome driver")
     driver = webdriver.Chrome()
+    time.sleep(1)
     driver.get("https://www.expedia.com/")
     driver.implicitly_wait(10)
-    driver.maximize_window()
+    # driver.maximize_window()
     request.cls.driver = driver
-
     yield driver
     driver.quit()
