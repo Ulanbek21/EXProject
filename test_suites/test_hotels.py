@@ -1,4 +1,4 @@
-from EXProject.page_objects.home import HomePage
+from EXProject.page_objects.home import HotelButton
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium import webdriver
@@ -12,7 +12,7 @@ class TestHotels():
     # @pytest.mark.skip
     @pytest.mark.negative_scenario
     def test_hotel_search_negative(self, setup):
-        self.hp = HomePage(setup)
+        self.hp = HotelButton(setup)
         time.sleep(3)
         self.hp.click_hotel_btn()
         self.hp.enter_hotel_city("^&$(^%&$)(&*^")
@@ -23,7 +23,7 @@ class TestHotels():
     # @pytest.mark.skip
     @pytest.mark.positive_scenario
     def test_search_hotel(self, setup):
-        self.hp = HomePage(setup)
+        self.hp = HotelButton(setup)
         time.sleep(1.5)
         self.hp.click_hotel_btn()
         self.hp.enter_hotel_city("Dallas")

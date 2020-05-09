@@ -1,7 +1,6 @@
-
 import time
 import pytest
-from EXProject.page_objects.home import HomePage
+from EXProject.page_objects.home import FlightButton
 import pdb
 
 @pytest.mark.usefixtures("setup")
@@ -9,7 +8,7 @@ class TestFlights():
 
     def test_flights(self, setup):
         # logging.info(' info log  for test_flights... ') # 1 
-        self.hp = HomePage(setup)
+        self.hp = FlightButton(setup)
         self.hp.click_flight_btn()
         # logging.info(' info log  for clickin action... ')
         time.sleep(2)
@@ -22,7 +21,7 @@ class TestFlights():
 
     @pytest.mark.negative_scenario
     def test_flights_negative(self, setup):
-        self.hp = HomePage(setup)
+        self.hp = FlightButton(setup)
         self.hp.click_flight_btn()
         time.sleep(2)
         self.hp.enter_departing_date('^%*&()')
