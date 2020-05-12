@@ -168,3 +168,33 @@ class CarsButoon:
     def number_off_cars(self):
         elements = len(self.driver.find_elements_by_xpath("//div[@id='search-results']/div/div/div"))
         print('Total number of cars: ',elements)
+
+
+
+#--------------------------------------------------------------------Login
+class LoginPage():
+
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def account_btn(self):
+        self.driver.find_element_by_id('header-account-menu').click()
+
+    def sign_in_btn(self):
+        self.driver.find_element_by_id('account-signin').click()
+    
+    def mail_adr(self,keyword):
+        el = self.driver.find_element_by_id('gss-signin-email')
+        el.click()
+        time.sleep(0.5)
+        el.send_keys(keyword)
+
+    def enter_psw(self,keyword):
+        pwd = self.driver.find_element_by_id('gss-signin-password')
+        pwd.click()
+        time.sleep(0.5)
+        pwd.send_keys(keyword)
+
+    def sing_in_click(self):
+        self.driver.find_element_by_xpath('//*[@id="gss-signin-submit"]').click()
